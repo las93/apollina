@@ -45,7 +45,7 @@ class ConfigLoad
 		else { new \Exception('ConfigLoad: file obligatory');}
 
 		$sViewDirectory = str_replace('lib'.DIRECTORY_SEPARATOR.'Template'.DIRECTORY_SEPARATOR.'Function',
-			'src'.DIRECTORY_SEPARATOR.PORTAIL.DIRECTORY_SEPARATOR.'View'.DIRECTORY_SEPARATOR, __DIR__);
+			'src'.DIRECTORY_SEPARATOR.PORTAL.DIRECTORY_SEPARATOR.'View'.DIRECTORY_SEPARATOR, __DIR__);
 
 		$aConfVars = parse_ini_file($sViewDirectory.$sFile);
 

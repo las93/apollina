@@ -215,14 +215,26 @@ class Template
 	 * assign a variable for the template
 	 *
 	 * @access public
-	 * @param  string $sName name of the variable
+	 * @param  mixed $mName name of the variable
 	 * @param  mixed $mValue value of the variable
 	 * @return \Apollina\Template
 	 */
-	public function assign($sName, $mValue) 
+	public function assign($mName, $mValue) 
 	{
-		$this->_aVar[$sName] = $mValue;
-		return $this;
+	    if (is_array($mName)) {
+	        
+	        foreach ($mName as $mKey => $mValue) {
+	            
+	            $this->_aVar[$mKey] = $mValue;
+	        }
+	        
+		    return $this;
+	    }
+	    else {
+		
+	        $this->_aVar[$mName] = $mValue;
+		    return $this;
+	    }
 	}
 
 	/**
@@ -318,6 +330,7 @@ class Template
 		}
 
 		$sTemplate = $this->fetch($sName);
+
 		echo $sTemplate;
 	}
 
@@ -709,7 +722,6 @@ class Template
 			}
 			else {
 
-				//$sModelname = str_replace(array('src/'.PORTAIL.'/View/', 'src\\'.PORTAIL.'\View\\', '\\'), array('', '', ''), $_aProtectedVar['model']);
 				$this->_transform(file_get_contents(self::$_sBasePath.$sModelname), $sModelname);
 			}
 		}
