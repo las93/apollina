@@ -14,7 +14,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Apollina": "/" }
+        "psr-4": { "Apollina\\": "" }
     },
     "require": {
         "php": ">=7.0.0"
