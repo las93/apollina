@@ -1,8 +1,7 @@
 ﻿{
     "name": "las93/apollina",
     "license": "MIT",
-    "version": "3.0.0-alpha3",
-    "type": "library",
+    "version": "3.0.0-alpha4",
     "description": "Library to create template in your app",
     "keywords": ["library"],
     "homepage": "https://github.com/las93/apollina",
