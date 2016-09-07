@@ -122,6 +122,14 @@ class Template
 	 * @var    int
 	 */
 	private static $_iRenderLevel = 5;
+
+	/**
+	 * The path of functions 
+	 *
+	 * @access private
+	 * @var    string
+	 */
+	private $_aFunctionsPath = array();
 	
 	/**
 	 * constant to define the render level
@@ -363,7 +371,13 @@ class Template
 
 		ob_start();
 
-        $iFileModificationTime = filemtime(self::$_sBasePath.$this->_sTemplateName);
+		if (file_exists(self::$_sBasePath . $this->_sTemplateName)) {
+
+			$iFileModificationTime = filemtime(self::$_sBasePath . $this->_sTemplateName);
+		}
+		else {
+			//faire une erreur
+		}
 
 		if (file_exists(self::$_sCachePath.$this->_getEncodeTemplateName($this->_sTemplateName).'.cac.php')) {
 
@@ -437,6 +451,22 @@ class Template
 	        self::$_aDisableRenderLevel[$iKey] = $bRenderLevel;
 	    }
 	    
+		return $this;
+	}
+
+	/**
+	 * get the basepath
+	 *
+	 * @access public
+	 * @param  string $sFilesPath
+	 * @param  string $sNamespace
+	 * @return \Apollina\Template
+	 */
+	public function addFunctionPath($sFilesPath, $sNamespace) 
+	{
+	    $this->_aFunctionsPath[count($this->_aFunctionsPath)+1] = array();   
+	    $this->_aFunctionsPath[count($this->_aFunctionsPath)]['files'] = $sFilesPath;
+	    $this->_aFunctionsPath[count($this->_aFunctionsPath)]['namespace'] = $sNamespace;
 		return $this;
 	}
 
@@ -707,6 +737,26 @@ class Template
 				}
 
 				$sContent = str_replace($aOne[0], $oFunction->replaceBy($aParams), $sContent);
+			}
+			
+			foreach ($this->_aFunctionsPath as $sOnePath) {
+
+			    if (file_exists($sOnePath['files'].DIRECTORY_SEPARATOR.$sName.'.php')) {
+			    
+			        $sClassName = $sOnePath['namespace'].$sName;
+			        $oFunction = new $sClassName;
+			        $aAttributes = explode(' ', $aOne[2]);
+			    
+			        $aParams = [];
+			    
+			        foreach ($aAttributes as $sOne2) {
+			    
+			            $aSplitParams = explode('=', $sOne2);
+			            $aParams[$aSplitParams[0]] = $aSplitParams[1];
+			        }
+
+			        $sContent = str_replace($aOne[0], $oFunction->replaceBy($aParams), $sContent);
+			    }
 			}
 		}
 
