@@ -1,22 +1,25 @@
 ﻿{
-    "name": "las93/apollina",
-    "license": "MIT",
-    "version": "3.0.0",
-    "type": "library",
-    "description": "Library to create template in your app",
-    "keywords": ["library"],
-    "homepage": "https://github.com/las93/apollina",
-    "authors": [
-        {
-            "name": "Paquet Judicaël",
-            "email": "las92i@homail.fr",
-            "role": "Developer"
-        }
-    ],
-    "autoload": {
-        "psr-4": { "Apollina\\": "" }
-    },
-    "require": {
-        "php": ">=7.0.0"
+  "name": "las93/apollina",
+  "license": "MIT",
+  "version": "3.0.3",
+  "type": "libray",
+  "description": "Templating in PHP",
+  "keywords": ["templating", "php"],
+  "homepage": "https://github.com/las93/apollina",
+  "authors": [
+    {
+      "name": "Paquet Judicaël",
+      "email": "judicael.paquet@gmail.com",
+      "role": "CIO"
     }
+  ],
+  "autoload": {
+    "psr-4": { "Apollina\\": "Apollina/" }
+  },
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8"
+  }
 }
