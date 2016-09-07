@@ -1,7 +1,7 @@
 ﻿{
     "name": "las93/apollina",
     "license": "MIT",
-    "version": "3.0.2-alpha",
+    "version": "3.0.0-alpha3",
     "type": "library",
     "description": "Library to create template in your app",
     "keywords": ["library"],
@@ -14,7 +14,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Apollina": "/" }
+        "psr-4": { "Apollina": "/" }
     },
     "require": {
         "php": ">=7.0.0"
